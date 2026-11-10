@@ -39,7 +39,7 @@
   </script>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased selection:bg-emerald-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans antialiased selection:bg-emerald-500 selection:text-white">
 
   <!-- Top Navigation Bar -->
   <header class="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-0 z-50 px-6 py-3.5 shadow-sm">
@@ -84,7 +84,7 @@
   </header>
 
   <!-- Main Content Container -->
-  <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-6 space-y-6">
 
     <!-- KPI Metric Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -453,7 +453,7 @@
     </div>
   </div>
 
-  <footer class="border-t border-slate-200 bg-white mt-12 py-6 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 bg-white mt-auto py-5 text-center text-xs text-slate-500 shrink-0">
     EcoTrace • Open-Source Cloud Carbon & Energy Footprint Profiler • Green Software Foundation SCI Standard
   </footer>
 
