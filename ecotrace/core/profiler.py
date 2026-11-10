@@ -61,9 +61,9 @@ class SystemProfiler:
         """Initializes representative Bangladesh & regional cloud microservices."""
         defaults = [
             WorkloadProfile(
-                id="wkld-bangla-llm",
-                name="Bangla LLaMA Fine-Tuning (Bengali NLP Job)",
-                workload_type=WorkloadType.ML_TRAINING,
+                id="wkld-bangla-nlp",
+                name="Bangla Tokenizer & Document Parsing Service",
+                workload_type=WorkloadType.DATA_PIPELINE,
                 priority=WorkloadPriority.FLEXIBLE_BATCH,
                 status=WorkloadStatus.RUNNING,
                 region_id="bd-tier4-gazipur",
