@@ -99,24 +99,24 @@ function initCharts() {
       plugins: { legend: { display: false } },
       scales: {
         x: {
-          grid: { color: "rgba(255, 255, 255, 0.04)" },
-          ticks: { color: "#6b7280", maxTicksLimit: 8, font: { size: 10 } }
+          grid: { color: "rgba(0, 0, 0, 0.05)" },
+          ticks: { color: "#64748b", maxTicksLimit: 8, font: { size: 10 } }
         },
         y: {
           type: "linear",
           display: true,
           position: "left",
-          grid: { color: "rgba(255, 255, 255, 0.05)" },
-          ticks: { color: "#06b6d4", font: { size: 10 } },
-          title: { display: true, text: "Watts", color: "#06b6d4", font: { size: 10 } }
+          grid: { color: "rgba(0, 0, 0, 0.05)" },
+          ticks: { color: "#0891b2", font: { size: 10 } },
+          title: { display: true, text: "Watts", color: "#0891b2", font: { size: 10 } }
         },
         y1: {
           type: "linear",
           display: true,
           position: "right",
           grid: { drawOnChartArea: false },
-          ticks: { color: "#f59e0b", font: { size: 10 } },
-          title: { display: true, text: "gCO₂/hr", color: "#f59e0b", font: { size: 10 } }
+          ticks: { color: "#d97706", font: { size: 10 } },
+          title: { display: true, text: "gCO₂/hr", color: "#d97706", font: { size: 10 } }
         }
       }
     }
@@ -148,11 +148,11 @@ function initCharts() {
       scales: {
         x: {
           grid: { display: false },
-          ticks: { color: "#6b7280", font: { size: 9 }, maxTicksLimit: 8 }
+          ticks: { color: "#64748b", font: { size: 9 }, maxTicksLimit: 8 }
         },
         y: {
-          grid: { color: "rgba(255, 255, 255, 0.05)" },
-          ticks: { color: "#9ca3af", font: { size: 10 } }
+          grid: { color: "rgba(0, 0, 0, 0.05)" },
+          ticks: { color: "#64748b", font: { size: 10 } }
         }
       }
     }
@@ -265,32 +265,32 @@ async function loadRegions() {
       const card = document.createElement("div");
       card.className = `p-3 rounded-xl border cursor-pointer transition relative overflow-hidden ${
         isSelected
-          ? "bg-brand-950/40 border-brand-500 shadow-md shadow-brand-500/20"
-          : "bg-gray-900/60 border-gray-800 hover:border-gray-700 hover:bg-gray-850"
+          ? "bg-emerald-50/80 border-emerald-500 shadow-sm ring-1 ring-emerald-500/30"
+          : "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50"
       }`;
 
-      let intensityColor = "text-emerald-400";
-      let badgeBg = "bg-emerald-500/15 text-emerald-400 border-emerald-500/30";
+      let intensityColor = "text-emerald-600";
+      let badgeBg = "bg-emerald-50 text-emerald-700 border-emerald-200";
       if (r.carbon_intensity_gco2_kwh > 300) {
-        intensityColor = "text-rose-400";
-        badgeBg = "bg-rose-500/15 text-rose-400 border-rose-500/30";
+        intensityColor = "text-rose-600";
+        badgeBg = "bg-rose-50 text-rose-700 border-rose-200";
       } else if (r.carbon_intensity_gco2_kwh > 100) {
-        intensityColor = "text-amber-400";
-        badgeBg = "bg-amber-500/15 text-amber-400 border-amber-500/30";
+        intensityColor = "text-amber-600";
+        badgeBg = "bg-amber-50 text-amber-700 border-amber-200";
       }
 
       card.innerHTML = `
         <div class="flex items-center justify-between mb-1.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-gray-400">${r.provider}</span>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">${r.provider}</span>
           <span class="px-1.5 py-0.5 text-[9px] font-semibold rounded border ${badgeBg}">
             ${r.renewable_percentage.toFixed(0)}% Green
           </span>
         </div>
-        <div class="font-bold text-xs text-white truncate" title="${r.name}">${r.name}</div>
-        <div class="text-[11px] text-gray-400">${r.country}</div>
-        <div class="mt-2 flex items-baseline justify-between border-t border-gray-800/60 pt-2">
-          <span class="text-[10px] text-gray-400">Carbon Rate:</span>
-          <span class="font-extrabold text-xs ${intensityColor}">${r.carbon_intensity_gco2_kwh} <span class="text-[9px] font-normal">g/kWh</span></span>
+        <div class="font-bold text-xs text-slate-800 truncate" title="${r.name}">${r.name}</div>
+        <div class="text-[11px] text-slate-500">${r.country}</div>
+        <div class="mt-2 flex items-baseline justify-between border-t border-slate-100 pt-2">
+          <span class="text-[10px] text-slate-500">Carbon Rate:</span>
+          <span class="font-extrabold text-xs ${intensityColor}">${r.carbon_intensity_gco2_kwh} <span class="text-[9px] font-normal text-slate-400">g/kWh</span></span>
         </div>
       `;
 
@@ -362,7 +362,7 @@ async function loadWorkloads() {
     workloadsTbody.innerHTML = "";
     workloads.forEach((w) => {
       const tr = document.createElement("tr");
-      tr.className = "hover:bg-gray-800/40 transition group";
+      tr.className = "hover:bg-slate-50/80 transition group border-b border-slate-100";
 
       let ratingBadge = "badge-eco-B";
       if (w.eco_rating === "A+") ratingBadge = "badge-eco-A-plus";
@@ -371,27 +371,27 @@ async function loadWorkloads() {
       else if (w.eco_rating === "D" || w.eco_rating === "F") ratingBadge = "badge-eco-D";
 
       tr.innerHTML = `
-        <td class="py-3 px-4 font-semibold text-white">
+        <td class="py-3 px-4 font-semibold text-slate-900">
           <div class="flex items-center space-x-2">
-            <span class="w-1.5 h-1.5 rounded-full ${w.status === 'running' ? 'bg-emerald-400' : 'bg-amber-400'}"></span>
+            <span class="w-2 h-2 rounded-full ${w.status === 'running' ? 'bg-emerald-500 ring-2 ring-emerald-100' : 'bg-amber-400'}"></span>
             <span>${w.name}</span>
           </div>
         </td>
-        <td class="py-3 px-3 text-gray-400">${w.workload_type}</td>
+        <td class="py-3 px-3 text-slate-600">${w.workload_type}</td>
         <td class="py-3 px-3">
           <span class="px-2 py-0.5 rounded text-[10px] font-medium ${
-            w.priority === 'critical' ? 'bg-rose-500/15 text-rose-300' : (w.priority === 'flexible_batch' ? 'bg-brand-500/15 text-brand-300' : 'bg-blue-500/15 text-blue-300')
+            w.priority === 'critical' ? 'bg-rose-50 text-rose-700 border border-rose-200' : (w.priority === 'flexible_batch' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-sky-50 text-sky-700 border border-sky-200')
           }">${w.priority.replace('_', ' ')}</span>
         </td>
-        <td class="py-3 px-3 text-gray-300 font-mono text-[11px]">${w.region_id}</td>
-        <td class="py-3 px-3 text-right text-gray-300 font-mono">${w.vcpus}c / ${w.memory_gb}GB</td>
-        <td class="py-3 px-3 text-right text-cyan-400 font-mono font-medium">${w.estimated_watts.toFixed(1)} W</td>
-        <td class="py-3 px-3 text-right text-amber-400 font-mono font-medium">${w.carbon_rate_gco2_hr.toFixed(1)} g/h</td>
+        <td class="py-3 px-3 text-slate-600 font-mono text-[11px]">${w.region_id}</td>
+        <td class="py-3 px-3 text-right text-slate-700 font-mono">${w.vcpus}c / ${w.memory_gb}GB</td>
+        <td class="py-3 px-3 text-right text-cyan-700 font-mono font-medium">${w.estimated_watts.toFixed(1)} W</td>
+        <td class="py-3 px-3 text-right text-amber-700 font-mono font-medium">${w.carbon_rate_gco2_hr.toFixed(1)} g/h</td>
         <td class="py-3 px-3 text-center">
           <span class="px-2 py-0.5 rounded text-[11px] font-bold ${ratingBadge}">${w.eco_rating}</span>
         </td>
         <td class="py-3 px-3 text-center">
-          <button onclick="deleteWorkload('${w.id}')" class="p-1 rounded text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition" title="Delete Workload">
+          <button onclick="deleteWorkload('${w.id}')" class="p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition" title="Delete Workload">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
           </button>
         </td>
@@ -427,7 +427,7 @@ async function loadRecommendations() {
 
     if (recs.length === 0) {
       recsContainer.innerHTML = `
-        <div class="col-span-full p-4 rounded-xl bg-gray-900/40 border border-gray-800 text-center text-xs text-gray-400">
+        <div class="col-span-full p-4 rounded-xl bg-slate-50 border border-slate-200 text-center text-xs text-slate-500">
           🌱 Workloads are currently running at peak green efficiency!
         </div>
       `;
@@ -436,33 +436,33 @@ async function loadRecommendations() {
 
     recs.forEach((r) => {
       const card = document.createElement("div");
-      card.className = "p-4 rounded-xl bg-gray-900/80 border border-brand-500/20 hover:border-brand-500/50 shadow-md space-y-2.5 transition flex flex-col justify-between";
+      card.className = "p-4 rounded-xl bg-white border border-slate-200 hover:border-emerald-400 hover:shadow-md shadow-sm space-y-2.5 transition flex flex-col justify-between";
 
       let icon = "globe";
       let badgeText = "SPATIAL SHIFT";
-      let badgeClass = "bg-emerald-500/20 text-emerald-300";
+      let badgeClass = "bg-emerald-50 text-emerald-700 border border-emerald-200";
       if (r.category === "temporal_shift") {
         icon = "clock";
         badgeText = "TEMPORAL SHIFT";
-        badgeClass = "bg-amber-500/20 text-amber-300";
+        badgeClass = "bg-amber-50 text-amber-700 border border-amber-200";
       } else if (r.category === "right_sizing") {
         icon = "cpu";
         badgeText = "RIGHT-SIZING";
-        badgeClass = "bg-indigo-500/20 text-indigo-300";
+        badgeClass = "bg-indigo-50 text-indigo-700 border border-indigo-200";
       }
 
       card.innerHTML = `
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">${badgeText}</span>
-            <span class="text-xs font-extrabold text-brand-400">-${r.potential_carbon_savings_percent.toFixed(1)}% CO₂</span>
+            <span class="text-xs font-extrabold text-emerald-600">-${r.potential_carbon_savings_percent.toFixed(1)}% CO₂</span>
           </div>
-          <h3 class="text-xs font-bold text-white leading-tight">${r.title}</h3>
-          <p class="text-[11px] text-gray-400 line-clamp-3 leading-relaxed">${r.description}</p>
+          <h3 class="text-xs font-bold text-slate-800 leading-tight">${r.title}</h3>
+          <p class="text-[11px] text-slate-500 line-clamp-3 leading-relaxed">${r.description}</p>
         </div>
-        <div class="pt-2 border-t border-gray-800 flex items-center justify-between">
-          <span class="text-[10px] text-gray-400">-${r.potential_carbon_savings_gco2_per_day.toFixed(1)} g/day</span>
-          <button onclick='applyOptimization(${JSON.stringify(r)})' class="px-2.5 py-1 text-[11px] font-semibold rounded bg-brand-600 hover:bg-brand-500 text-white shadow-sm transition flex items-center space-x-1">
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-[10px] text-slate-500">-${r.potential_carbon_savings_gco2_per_day.toFixed(1)} g/day</span>
+          <button onclick='applyOptimization(${JSON.stringify(r)})' class="px-2.5 py-1 text-[11px] font-semibold rounded bg-emerald-600 hover:bg-emerald-500 text-white shadow-sm transition flex items-center space-x-1">
             <i data-lucide="check" class="w-3 h-3"></i>
             <span>Apply Now</span>
           </button>
